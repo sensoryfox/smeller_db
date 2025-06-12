@@ -1,0 +1,68 @@
+# ------------------------------------------------------------
+#  📦  PYPROJECT.TOML
+#  Минимальная конфигурация для публикации пакета на PyPI.
+#  Корневые источники находятся в каталоге  src/
+# ------------------------------------------------------------
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name            = "aroma-db-client"          #  Измените при необходимости
+version         = "0.1.0"
+description     = "Sync & async ORM-клиент, сервис-слой и CLI для управления Aroma-данными."
+readme          = "README.md"
+requires-python = ">=3.9"
+
+authors = [
+    { name="SL", email="info@sensorylab.ru" },
+]
+
+license = { text = "MIT" }
+
+keywords = [
+    "SQLAlchemy", "asyncpg", "ORM", "database", "aroma", "pydantic", "rich", "typer",
+]
+
+# --- Продакшен-зависимости ---------------------------------
+dependencies = [
+    "SQLAlchemy>=2.0,<3.0",
+    "asyncpg>=0.29",            # async-драйвер PostgreSQL
+    "psycopg2-binary>=2.9",     # sync-драйвер PostgreSQL
+    "pydantic>=2.5",            # в проекте используется Pydantic v2
+    "rich>=13.0",               # красивый вывод в консоль
+    "typer[all]>=0.9",          # CLI-утилиты (включает все опциональные зависимости)
+    "python-dotenv>=1.0",       # чтение .env
+]
+
+# --- Дополнительные «группы» зависимостей -------------------
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "black>=23.10",
+    "isort>=5.12",
+    "mypy>=1.6",
+]
+
+docs = [
+    "mkdocs-material>=9.5",
+]
+
+# --- URL-ы для PyPI-карточки пакета -------------------------
+[project.urls]
+Homepage        = "https://github.com/sensoryfox/aroma-db-client"
+Documentation   = "https://github.com/sensoryfox/aroma-db-client#readme"
+Issues          = "https://github.com/sensoryfox/aroma-db-client/issues"
+Changelog       = "https://github.com/sensoryfox/aroma-db-client/blob/main/CHANGELOG.md"
+
+# --- Консольные entry-points (устанавливаются вместе с пакетом)
+[project.scripts]
+aroma-db = "src.tools.db_cli:app"   # `aroma-db --help`
+
+# --- Настройки setuptools (поиск пакетов в каталоге src) ----
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

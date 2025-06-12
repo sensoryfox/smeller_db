@@ -1,0 +1,7 @@
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+SQLAlchemy>=2.0.0
+psycopg2-binary # или asyncpg, если планируется асинхронное взаимодействие с БД
+rich>=13.0.0 # Для красивого вывода в консоль
+typer[all]
+asyncpg
