@@ -8,10 +8,15 @@ logger = logging.getLogger(__name__)
 class CartridgeModel(Base):
 
     __tablename__ = 'sl_catalog'
-    ID = Column(Integer, primary_key=True, name='id') #  Изменили на 'id'
-    NAME = Column(String, name='name') #  Изменили на 'name'
-    CODE = Column(String, name='sl_category') #  Изменили на 'code'
-    CLASS = Column(String, name='sl_class') #  Возможно, колонка называется 'sl_class'? Уточните реальное имя.
+    ID = Column(Integer, primary_key=True, name='id') 
+    NAME = Column(String, name='name') 
+    CODE = Column(String, name='sl_category')
+    CLASS = Column(String, name='sl_class') 
+    ORIGIN = Column(String, name='sl_origin')  
+    TYPE = Column(String, name='sl_type')      
+    
 
     def __repr__(self):
-        return f"<Cartridge(ID={self.ID}, NAME='{self.NAME}', CODE='{self.CODE}', CLASS='{self.CLASS}')>" #  <--- ИСПРАВЛЕНО на self.ID, self.NAME, self.CODE, self.CLASS
+        # Обновите repr для отображения новых полей
+        return (f"<Cartridge(ID={self.ID}, NAME='{self.NAME}', CODE='{self.CODE}', "
+                f"ORIGIN='{self.ORIGIN}', TYPE='{self.TYPE}', CLASS='{self.CLASS}')>")

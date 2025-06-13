@@ -57,7 +57,7 @@ DB_HOST=185.180.230.207
 DB_PORT=55432
 DB_USER=postgres
 DB_PASSWORD=postgres
-DB_NAME=SL_aroma
+DB_NAME=sl_aroma
 ```
 
 Допускается форма URL-строки `postgresql://user:pass@host:port/dbname` — смотрите

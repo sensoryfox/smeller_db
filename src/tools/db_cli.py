@@ -56,7 +56,7 @@ def list_tables(async_mode: bool = typer.Option(False, "--async", help="Испо
         for t in service.get_table_names():
             rprint(f"• [cyan]{t}[/cyan]")
 
-@app.command(name="init-schema") # Переименовал для ясности
+@app.command(name="init-schema")
 def init_schema(
     drop_first: bool = typer.Option(False, "--drop-first", help="Удалить все таблицы перед созданием"),
     async_mode: bool = typer.Option(False, "--async", help="Использовать async-клиент"),
@@ -72,12 +72,14 @@ def init_schema(
             print_message("Async schema setup complete!", style="bold green")
         asyncio.run(_run_async_init_schema())
     else:
-        service = DatabaseService(db_config=cfg, create_schema_on_init=False, drop_all_on_init=False)
-        if drop_first:
-            service.drop_all_tables()
-        service.create_all_tables()
+        # Передаем флаги напрямую в конструктор DatabaseService.
+        # Он уже содержит логику для вызова create_all_tables/drop_all_tables внутри себя.
+        service = DatabaseService(
+            db_config=cfg,
+            create_schema_on_init=True,   # Всегда пытаемся создать схему
+            drop_all_on_init=drop_first   # Передаем значение drop_first
+        )
         print_message("Sync schema setup complete!", style="bold green")
-
 @app.command(name="create-user") # <--- НОВАЯ КОМАНДА
 def create_db_user(
     username: str = typer.Argument(..., help="Имя нового пользователя (роли) базы данных."),
