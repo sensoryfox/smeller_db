@@ -2,7 +2,7 @@
 
 > Удобный синхронно-асинхронный клиент (SQLAlchemy 2.0 style) с сервис-слоем и CLI для работы
 > с базой данных проекта **Aroma Platform**.  
-> Пакет можно поставить одной командой `pip install aroma-db-client`
+> Пакет можно поставить одной командой `pip install smeller_db`
 > и сразу воспользоваться как из Python-кода, так и из терминала.
 
 ---
@@ -36,11 +36,11 @@
 
 ```bash
 # Из PyPI
-pip install aroma-db-client
+pip install smeller_db
 
 # Локальная разработка
-git clone https://github.com/sensoryfox/aroma-db-client.git
-cd aroma-db-client
+git clone https://github.com/sensoryfox/smeller_db.git
+cd smeller_db
 pip install -e .[dev]   # + dev-зависимости
 ```
 Python ≥ 3.9 обязателен (используются `typing.Annotated`, match-statement и т.д.).
@@ -53,11 +53,13 @@ Python ≥ 3.9 обязателен (используются `typing.Annotated`
 (можно задать в `.env` файле). Минимальный набор:
 
 ```
-DB_HOST=185.180.230.207
-DB_PORT=55432
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_NAME=sl_aroma
+POSTGRES_HOST=185.180.230.207
+POSTGRES_PORT=55432
+POSTGRES_DB=sl_aroma
+POSTGRES_USER=slreader
+POSTGRES_PASSWORD=1qa2ws#ED
+POSTGRES_OPTIONS=sslmode=disable  
+DB_ASYNC=true
 ```
 
 Допускается форма URL-строки `postgresql://user:pass@host:port/dbname` — смотрите
@@ -65,7 +67,16 @@ DB_NAME=sl_aroma
 
 ---
 ```py
+
+from src.config.database import DatabaseConfig
+from src.services.database_service import DatabaseService
+db_config = DatabaseConfig.from_env()
+db_service = DatabaseService(db_config, create_schema_on_init=False, drop_all_on_init=False)
+# получаем список картриджей
+db_service.get_all_cartridges()
+
 ## Быстрый старт (synchronous) <a name="быстрый-старт-sync"></a>
+# Если есть права на создание
 from src.services import DatabaseService
 from src.schemas.aroma_track import AromaTrackCreate
 from src.schemas.channel_control_config import ChannelControlConfig, Color
@@ -188,7 +199,7 @@ src/
 
 ## License
 
-`aroma-db-client` распространяется по лицензии **MIT** – делайте с кодом, что хотите,
+`smeller_db` распространяется по лицензии **MIT** – делайте с кодом, что хотите,
 но не забудьте сохранить копию лицензии.
 ────────────────────────────────────────
 
