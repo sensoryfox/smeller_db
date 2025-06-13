@@ -9,7 +9,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name            = "aroma-db-client"          #  Измените при необходимости
+name            = "smeller_db"          #  Измените при необходимости
 version         = "0.1.0"
 description     = "Sync & async ORM-клиент, сервис-слой и CLI для управления Aroma-данными."
 readme          = "README.md"
@@ -51,14 +51,14 @@ docs = [
 
 # --- URL-ы для PyPI-карточки пакета -------------------------
 [project.urls]
-Homepage        = "https://github.com/sensoryfox/aroma-db-client"
-Documentation   = "https://github.com/sensoryfox/aroma-db-client#readme"
-Issues          = "https://github.com/sensoryfox/aroma-db-client/issues"
-Changelog       = "https://github.com/sensoryfox/aroma-db-client/blob/main/CHANGELOG.md"
+Homepage        = "https://github.com/sensoryfox/smeller_db"
+Documentation   = "https://github.com/sensoryfox/smeller_db#readme"
+Issues          = "https://github.com/sensoryfox/smeller_db/issues"
+Changelog       = "https://github.com/sensoryfox/smeller_db/blob/main/CHANGELOG.md"
 
 # --- Консольные entry-points (устанавливаются вместе с пакетом)
 [project.scripts]
-aroma-db = "src.tools.db_cli:app"   # `aroma-db --help`
+smeller_db = "src.tools.db_cli:app"   # `smeller_db --help`
 
 # --- Настройки setuptools (поиск пакетов в каталоге src) ----
 [tool.setuptools]

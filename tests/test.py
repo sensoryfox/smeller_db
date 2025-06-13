@@ -32,7 +32,7 @@ db_config = DatabaseConfig.from_env()
 # Инициализируем DatabaseService.
 # drop_all_on_init=True используется здесь ОДИН РАЗ, чтобы очистить БД в начале выполнения скрипта.
 # Все последующие операции будут использовать этот же экземпляр db_service.
-db_service = DatabaseService(db_config, create_schema_on_init=True, drop_all_on_init=True)
+db_service = DatabaseService(db_config, create_schema_on_init=False, drop_all_on_init=False)
 
 print_message("Проверка текущих таблиц в БД:", style="bold blue")
 table_names = db_service.get_table_names()
