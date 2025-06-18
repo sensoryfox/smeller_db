@@ -4,17 +4,17 @@ from typing import List, Optional, Dict, Any, Type, Union
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession # Для тайп-хинтинга, не всегда строго необходим
-from src.models.aroma_block import AromaBlockModel
-from src.models.aroma_track import AromaTrackModel
-from src.models.cartridge import CartridgeModel
-from src.models.base import Base
-from src.schemas.aroma_block import AromaBlock, AromaBlockCreate
-from src.schemas.aroma_track import AromaTrack, AromaTrackCreate
-from src.schemas.cartridge import Cartridge
-from src.schemas.channel_control_config import ChannelControlConfig
-from src.async_orm_client import AsyncORMClient # Используем асинхронный клиент
-from src.config.database import DatabaseConfig
-from src.utils.console_printer import print_table_data, print_message
+from smeller_db.models.aroma_block import AromaBlockModel
+from smeller_db.models.aroma_track import AromaTrackModel
+from smeller_db.models.cartridge import CartridgeModel
+from smeller_db.models.base import Base
+from smeller_db.schemas.aroma_block import AromaBlock, AromaBlockCreate
+from smeller_db.schemas.aroma_track import AromaTrack, AromaTrackCreate
+from smeller_db.schemas.cartridge import Cartridge
+from smeller_db.schemas.channel_control_config import ChannelControlConfig
+from smeller_db.async_orm_client import AsyncORMClient # Используем асинхронный клиент
+from smeller_db.config.database import DatabaseConfig
+from smeller_db.utils.console_printer import print_table_data, print_message
 logger = logging.getLogger(__name__)
 
 class AsyncDatabaseService:

@@ -1,7 +1,7 @@
 # schemas/aroma_block.py
 from pydantic import BaseModel, Field
 from typing import Dict, Optional, Union
-from src.schemas.channel_control_config import ChannelControlConfig
+from smeller_db.schemas.channel_control_config import ChannelControlConfig
 
 class AromaBlockCreate(BaseModel):
     """

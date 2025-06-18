@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name            = "smeller_db"          #  Измените при необходимости
-version         = "0.1.0"
+version         = "0.1.5"
 description     = "Sync & async ORM-клиент, сервис-слой и CLI для управления Aroma-данными."
 readme          = "README.md"
 requires-python = ">=3.9"
@@ -58,11 +58,11 @@ Changelog       = "https://github.com/sensoryfox/smeller_db/blob/main/CHANGELOG.
 
 # --- Консольные entry-points (устанавливаются вместе с пакетом)
 [project.scripts]
-smeller_db = "src.tools.db_cli:app"   # `smeller_db --help`
+smeller_db = "smeller_db.tools.db_cli:app"   # `smeller_db --help`
 
-# --- Настройки setuptools (поиск пакетов в каталоге src) ----
+# --- Настройки setuptools (поиск пакетов в каталоге smeller_db) ----
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["smeller_db"]

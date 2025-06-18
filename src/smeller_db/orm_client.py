@@ -5,8 +5,8 @@ from typing import Type, Iterable, Any, Optional, Union, List, Dict
 from sqlalchemy import create_engine, inspect, select, text
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.exc import SQLAlchemyError
-from src.models.base import Base # Импортируем базовый класс для ORM-моделей
-from src.config.database import DatabaseConfig # Импортируем конфигурацию БД
+from smeller_db.models.base import Base # Импортируем базовый класс для ORM-моделей
+from smeller_db.config.database import DatabaseConfig # Импортируем конфигурацию БД
 logger = logging.getLogger(__name__)
 
 class ORMClient(AbstractContextManager):

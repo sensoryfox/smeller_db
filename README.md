@@ -63,13 +63,13 @@ DB_ASYNC=true
 ```
 
 Допускается форма URL-строки `postgresql://user:pass@host:port/dbname` — смотрите
-`src/config/database.py`.
+`smeller_db/config/database.py`.
 
 ---
 ```py
 
-from src.config.database import DatabaseConfig
-from src.services.database_service import DatabaseService
+from smeller_db.config.database import DatabaseConfig
+from smeller_db.services.database_service import DatabaseService
 db_config = DatabaseConfig.from_env()
 db_service = DatabaseService(db_config, create_schema_on_init=False, drop_all_on_init=False)
 # получаем список картриджей
@@ -77,9 +77,9 @@ db_service.get_all_cartridges()
 
 ## Быстрый старт (synchronous) <a name="быстрый-старт-sync"></a>
 # Если есть права на создание
-from src.services import DatabaseService
-from src.schemas.aroma_track import AromaTrackCreate
-from src.schemas.channel_control_config import ChannelControlConfig, Color
+from smeller_db.services import DatabaseService
+from smeller_db.schemas.aroma_track import AromaTrackCreate
+from smeller_db.schemas.channel_control_config import ChannelControlConfig, Color
 
 service = DatabaseService.from_env()  # использует .env
 
@@ -121,8 +121,8 @@ service.print_database_overview()
 ```py
 ## Быстрый старт (asynchronous) <a name="быстрый-старт-async"></a>
 import asyncio
-from src.services.database_service_async import AsyncDatabaseService
-from src.schemas.aroma_track import AromaTrackCreate
+from smeller_db.services.database_service_async import AsyncDatabaseService
+from smeller_db.schemas.aroma_track import AromaTrackCreate
 
 async def main():
     service = AsyncDatabaseService.from_env()
@@ -146,25 +146,25 @@ aroma-db --help
 Часто используемые под-команды:
 | Команда | Описание |
 | ------------------------------------------- | --------------------------------------------------- |
-| `aroma-db show-db` | Красивый вывод всех таблиц (+3 строки превью). |
-| `aroma-db show-db --headers` | Только заголовки таблиц. |
-| `aroma-db list-tables` | Сухой список таблиц. |
-| `aroma-db init-schema` | Создать (если нужно – пересоздать) все таблицы. |
-| `aroma-db init-schema --drop-first` | Удалить **всё** и заново создать. ⚠ Будьте осторожны! |
-| `aroma-db ... --async` | Любая команда может быть выполнена через async. |
+| `smeller_db show-db` | Красивый вывод всех таблиц (+3 строки превью). |
+| `smeller_db show-db --headers` | Только заголовки таблиц. |
+| `smeller_db list-tables` | Сухой список таблиц. |
+| `smeller_db init-schema` | Создать (если нужно – пересоздать) все таблицы. |
+| `smeller_db init-schema --drop-first` | Удалить **всё** и заново создать. ⚠ Будьте осторожны! |
+| `smeller_db ... --async` | Любая команда может быть выполнена через async. |
 
 Пример:
 # Одной строкой посмотреть первые 5 записей всех таблиц
 
 ```bash
-aroma-db show-db --rows 5
+smeller_db show-db --rows 5
 ```
 
 ---
 
 ## API-справка
 
-src/
+smeller_db/
 ├─ async_orm_client.py        – «сырой» AsyncSession-обёртка (low-level)
 ├─ orm_client.py              – синхронный вариант
 ├─ services/
@@ -177,10 +177,10 @@ src/
 
 | Класс/функция | Где находится | Назначение |
 | ---------------------------------------- | -------------------------------------- | ------------ |
-| `ORMClient`, `AsyncORMClient` | `src/orm_client.py`, `src/async_orm_client.py` | Base-клиенты для CRUD, контекстный менеджер |
-| `DatabaseService`, `AsyncDatabaseService` | `src/services/…` | CRUD + удобные вспомогательные методы |
-| `get_db_client()` | `src/db_client_factory.py` | Фабрика sync/async-клиентов |
-| `aroma-db` (CLI) | `src/tools/db_cli.py` | Управление БД из терминала |
+| `ORMClient`, `AsyncORMClient` | `smeller_db/orm_client.py`, `smeller_db/async_orm_client.py` | Base-клиенты для CRUD, контекстный менеджер |
+| `DatabaseService`, `AsyncDatabaseService` | `smeller_db/services/…` | CRUD + удобные вспомогательные методы |
+| `get_db_client()` | `smeller_db/db_client_factory.py` | Фабрика sync/async-клиентов |
+| `smeller_db` (CLI) | `smeller_db/tools/db_cli.py` | Управление БД из терминала |
 
 Полная автодока генерируется `pdoc`/`mkdocs` (см. раздел «docs»).
 
@@ -191,7 +191,7 @@ src/
 1. Склонируйте репозиторий.
 2. `pip install -e .[dev]`
 3. Запустите тесты: `pytest -q`.
-4. Перед PR запустите `black . && isort . && mypy src`.
+4. Перед PR запустите `black . && isort . && mypy smeller_db`.
 
 Будем рады pull-request'ам 🚀
 

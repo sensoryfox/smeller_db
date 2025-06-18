@@ -5,16 +5,16 @@ from rich.console import Console
 from rich.table import Table
 from rich import print as rich_print
 
-from src.config.database import DatabaseConfig
-from src.services.database_service import DatabaseService
-from src.schemas.aroma_block import AromaBlockCreate, AromaBlock
-from src.schemas.aroma_track import AromaTrackCreate, AromaTrack
-from src.schemas.channel_control_config import ChannelControlConfig, Color
-from src.schemas.interpolation import InterpolationType # Импортируем новый класс
-from src.models.aroma_block import AromaBlockModel
-from src.models.aroma_track import AromaTrackModel
-from src.models.cartridge import CartridgeModel
-from src.utils.console_printer import print_table_data, print_message, print_key_value_pairs
+from smeller_db.config.database import DatabaseConfig
+from smeller_db.services.database_service import DatabaseService
+from smeller_db.schemas.aroma_block import AromaBlockCreate, AromaBlock
+from smeller_db.schemas.aroma_track import AromaTrackCreate, AromaTrack
+from smeller_db.schemas.channel_control_config import ChannelControlConfig, Color
+from smeller_db.schemas.interpolation import InterpolationType # Импортируем новый класс
+from smeller_db.models.aroma_block import AromaBlockModel
+from smeller_db.models.aroma_track import AromaTrackModel
+from smeller_db.models.cartridge import CartridgeModel
+from smeller_db.utils.console_printer import print_table_data, print_message, print_key_value_pairs
 
 console = Console()
 

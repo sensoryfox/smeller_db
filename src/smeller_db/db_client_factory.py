@@ -1,9 +1,9 @@
 import os
 from typing import Union
 
-from src.orm_client import ORMClient
-from src.async_orm_client import AsyncORMClient
-from src.config.database import DatabaseConfig
+from smeller_db.orm_client import ORMClient
+from smeller_db.async_orm_client import AsyncORMClient
+from smeller_db.config.database import DatabaseConfig
 
 # Значения «True» в env-переменной
 _TRUE = {"1", "true", "yes", "y"}

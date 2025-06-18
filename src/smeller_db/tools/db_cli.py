@@ -2,10 +2,10 @@ import typer
 from rich import print as rprint
 import asyncio # Импорт для запуска асинхронных функций
 from typing import Union
-from src.config.database import DatabaseConfig
-from src.services.database_service import DatabaseService         # Синхронный сервис
-from src.services.database_service_async import AsyncDatabaseService # Асинхронный сервис
-from src.utils.console_printer import print_message             # Используется обоими сервисами
+from smeller_db.config.database import DatabaseConfig
+from smeller_db.services.database_service import DatabaseService         # Синхронный сервис
+from smeller_db.services.database_service_async import AsyncDatabaseService # Асинхронный сервис
+from smeller_db.utils.console_printer import print_message             # Используется обоими сервисами
 app = typer.Typer(add_completion=False, help="📚 Утилиты для работы с базой данных")
 
 def _get_configured_service(async_mode: bool) -> Union[DatabaseService, AsyncDatabaseService]:

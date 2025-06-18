@@ -9,8 +9,8 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine, AsyncSession, async_sessionmaker
 )
 
-from src.config.database import DatabaseConfig
-from src.models.base import Base
+from smeller_db.config.database import DatabaseConfig
+from smeller_db.models.base import Base
 
 logger = logging.getLogger(__name__)
 
